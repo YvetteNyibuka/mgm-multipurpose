@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import SectionTitle from "../SectionTitle";
-import { Button } from "../Button";
 import { Icon } from "@iconify/react";
+import { Button } from "../Button";
+import SectionTitle from "../SectionTitle";
 
 export default function Contact() {
   return (
-    <section className="relative py-20 px-6 bg-primary-50">
+    <section className="relative py-8 sm:py-12 lg:py-20 px-4 sm:px-6 bg-primary-50 ">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 -z-10">
         <Image
@@ -26,9 +26,9 @@ export default function Contact() {
       />
 
       {/* Combined Contact Info & Form */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 p-8 bg-white rounded-3xl shadow-xl">
+      <div className="w-[90%] sm:w-[85%] max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 p-4 sm:p-6 md:p-8 bg-white rounded-3xl shadow-xl">
         {/* Contact Info */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {[
             {
               icon: "mdi:map-marker",
@@ -45,46 +45,53 @@ export default function Contact() {
               title: "Email",
               text: "mgmgasoreltd@gmail.com",
             },
+            {
+              icon: "mdi:clock",
+              title: "Working Hours",
+              text: "Mon - Fri: 8:00 AM - 6:00 PM, Sat: 9:00 AM - 1:00 PM",
+            },
           ].map((item, i) => (
             <div
               key={i}
-              className="flex items-start gap-4 bg-primary-50/70 p-5 rounded-xl shadow-sm hover:shadow-md transition"
+              className="flex items-start gap-3 sm:gap-4 bg-primary-50/70  p-4 sm:p-5 rounded-xl shadow-sm hover:shadow-md transition"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary">
-                <Icon icon={item.icon} className="text-2xl" />
+              <div className="flex h-10 sm:h-12 w-10 sm:w-12 items-center justify-center rounded-full bg-primary-100 text-primary">
+                <Icon icon={item.icon} className="text-xl sm:text-2xl" />
               </div>
               <div>
-                <h4 className="text-lg font-semibold text-primary">
+                <h4 className="text-base sm:text-lg font-semibold text-primary-700">
                   {item.title}
                 </h4>
-                <p className="text-text-light">{item.text}</p>
+                <p className="text-sm sm:text-base text-text-light ">
+                  {item.text}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white p-8 rounded-3xl shadow-xl">
-          <form className="grid gap-4">
+        <div className="bg-white p-4 sm:p-6 md:p-8 rounded-3xl shadow-xl">
+          <form className="grid gap-7">
             <input
               type="text"
               placeholder="Your Name"
-              className="border border-gray-300 p-4 rounded-xl w-full focus:ring-2 focus:ring-primary-400 transition"
+              className="border border-gray-300 p-3 sm:p-4 rounded-xl w-full focus:ring-2 focus:ring-primary-400 transition"
             />
             <input
               type="email"
               placeholder="Your Email"
-              className="border border-gray-300 p-4 rounded-xl w-full focus:ring-2 focus:ring-primary-400 transition"
+              className="border border-gray-300 p-3 sm:p-4 rounded-xl w-full focus:ring-2 focus:ring-primary-400 transition"
             />
             <textarea
               placeholder="Your Message"
-              className="border border-gray-300 p-4 rounded-xl w-full h-40 focus:ring-2 focus:ring-primary-400 transition"
+              className="border border-gray-300 p-3 sm:p-4 rounded-xl w-full h-32 sm:h-40 focus:ring-2 focus:ring-primary-400 transition"
             ></textarea>
             <Button
               type="submit"
               variant="primary"
               size="lg"
-              className="w-full"
+              className="w-full text-sm sm:text-base"
             >
               Send Message
             </Button>

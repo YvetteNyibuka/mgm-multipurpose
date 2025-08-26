@@ -14,7 +14,7 @@ export default function Footer() {
               height={45}
               className="rounded-full"
             />
-            <span className="font-bold text-lg">MGM Multipurpose construction Ltd</span>
+            <span className="font-bold text-lg">MGM</span>
           </div>
           <p className="text-sm leading-relaxed text-gray-300">
             Building meaningful connections and bridging gaps through modern
@@ -47,32 +47,37 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-
+        {/* Contact info */}
         <div>
-          <h3 className="font-semibold text-lg mb-4 text-white">Our Bridges</h3>
-          <div className="flex gap-3">
-            <Image
-              src="/Images/Bridges/Bridge1.jpeg"
-              alt="Bridge1"
-              width={60}
-              height={40}
-              className="rounded-md shadow-md"
-            />
-            <Image
-              src="/Images/Bridges/Bridge2.webp"
-              alt="Bridge2"
-              width={60}
-              height={40}
-              className="rounded-md shadow-md"
-            />
-            <Image
-              src="/Images/Bridges/Bridge3.webp"
-              alt="Bridge3"
-              width={60}
-              height={40}
-              className="rounded-md shadow-md"
-            />
-          </div>
+          <h3 className="font-semibold text-lg mb-4 text-white">Contact Us</h3>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <span className="font-semibold">
+                {/*  Iconify icon*/}
+                <Icon icon="mdi:map-marker" className="inline mr-2 text-2xl" />
+              </span>{" "}
+              Kigali, Rwanda
+            </li>
+            <li>
+              <span className="font-semibold">
+                <Icon icon="mdi:phone" className="inline mr-2 text-2xl" />
+              </span>{" "}
+              +250 788 595 731
+            </li>
+            <li>
+              <span className="font-semibold">
+                <Icon icon="mdi:email" className="inline mr-2 text-2xl" />
+              </span>{" "}
+              mgmgasoreltd@gmail.com
+            </li>
+            <li>
+              <span className="font-semibold">
+                <Icon icon="mdi:clock" className="inline mr-2 text-2xl" />
+              </span>{" "}
+              Mon - Fri: 8:00 AM - 6:00 PM, <br />
+              <span className="ml-9">Sat: 9:00 AM - 1:00 PM</span>
+            </li>
+          </ul>
         </div>
 
         {/* Socials */}
@@ -85,11 +90,28 @@ export default function Footer() {
             <a href="#" className="hover:text-sky-400 transition">
               <Icon icon="mdi:twitter" />
             </a>
-            <a href="#" className="hover:text-pink-400 transition">
+            <a
+              href="https://www.instagram.com/mgm_multipurpose_construction/"
+              className="hover:text-pink-400 transition"
+            >
               <Icon icon="mdi:instagram" />
             </a>
-            <a href="#" className="hover:text-blue-600 transition">
+            <a
+              href="https://www.linkedin.com/"
+              className="hover:text-blue-600 transition"
+            >
               <Icon icon="mdi:linkedin" />
+            </a>
+            {/* whatsapp */}
+            <a
+              href="https://web.whatsapp.com/"
+              className="hover:text-green-500 transition"
+            >
+              <Icon icon="mdi:whatsapp" />
+            </a>
+            {/* twitter */}
+            <a href="#" className="hover:text-blue-400 transition">
+              <Icon icon="mdi:twitter" />
             </a>
           </div>
         </div>
@@ -97,7 +119,8 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="mt-12 border-t border-gray-600 pt-6 text-center text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} MGM FN. All rights reserved.
+        &copy; {new Date().getFullYear()} MGM Multipurpose Construction Ltd. All
+        rights reserved.
       </div>
     </footer>
   );
