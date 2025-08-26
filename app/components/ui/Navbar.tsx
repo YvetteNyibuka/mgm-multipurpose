@@ -17,12 +17,9 @@ export default function Navbar({ className }: { className?: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const toggleMenu = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsMenuOpen((prev) => !prev);
-  };
-
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
 
   // Handle scroll for background change
@@ -32,10 +29,15 @@ export default function Navbar({ className }: { className?: string }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu when clicking outside
+  // Close menu when clicking outside (ignore toggle button)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
         closeMenu();
       }
     };
@@ -83,6 +85,7 @@ export default function Navbar({ className }: { className?: string }) {
 
         {/* Hamburger Button */}
         <button
+          ref={buttonRef}
           className="md:hidden focus:outline-none"
           onClick={toggleMenu}
           aria-label="Toggle navigation menu"
@@ -130,7 +133,7 @@ export default function Navbar({ className }: { className?: string }) {
             key={link.name}
             href={link.href}
             className="py-3 text-lg font-semibold hover:bg-primary-600 dark:hover:bg-primary-800 transition w-full text-center"
-            onClick={closeMenu} 
+            onClick={closeMenu}
           >
             {link.name}
           </a>
