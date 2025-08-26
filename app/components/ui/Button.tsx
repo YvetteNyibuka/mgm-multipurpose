@@ -1,4 +1,5 @@
-// components/Button.tsx
+"use client";
+
 import React, {
   ButtonHTMLAttributes,
   ReactNode,
@@ -8,7 +9,7 @@ import React, {
 import clsx from "clsx";
 import Link from "next/link";
 
-// Spinner component (can be customized further)
+// Spinner component
 export function Spinner({ className }: { className?: string }) {
   return (
     <svg
@@ -34,12 +35,11 @@ export function Spinner({ className }: { className?: string }) {
   );
 }
 
-// Props
 export type ButtonProps = {
   children?: ReactNode;
   icon?: ReactNode;
   variant?: "primary" | "secondary" | "danger" | "link" | "outline";
-  size?: "sm" | "md" | "lg" | number | string;
+  size?: "sm" | "md" | "lg";
   shape?: "rounded" | "pill" | "square";
   block?: boolean;
   loading?: boolean;
@@ -70,14 +70,13 @@ export type ButtonProps = {
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick"> &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "onClick">;
 
-// Maps for easy maintenance
-const sizeMap: Record<string, string> = {
+const sizeMap: Record<"sm" | "md" | "lg", string> = {
   sm: "px-3 py-1 text-sm",
   md: "px-4 py-2 text-base",
   lg: "px-6 py-3 text-lg",
 };
 
-const variantMap: Record<string, string> = {
+const variantMap: Record<NonNullable<ButtonProps["variant"]>, string> = {
   primary: "bg-primary text-white hover:bg-primary-600 focus:ring-primary-400",
   secondary:
     "bg-secondary text-white hover:bg-secondary-dark focus:ring-secondary-light",
@@ -87,114 +86,110 @@ const variantMap: Record<string, string> = {
     "border border-primary text-primary bg-transparent hover:bg-primary-50",
 };
 
-const shapeMap: Record<string, string> = {
+const shapeMap: Record<NonNullable<ButtonProps["shape"]>, string> = {
   rounded: "rounded-md",
   pill: "rounded-full",
   square: "rounded-none",
 };
 
-// ForwardRef Button
+// Correctly typed forwardRef
 export const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
->(
-  (
-    {
-      children,
-      icon,
-      variant = "primary",
-      size = "md",
-      shape = "rounded",
-      block = false,
-      loading = false,
-      disabled = false,
-      active = false,
-      toggleable = false,
-      checked = false,
-      align = "center",
-      margin,
-      padding,
-      href,
-      tooltip,
-      className,
-      style,
-      type = "button",
-      ariaLabel,
-      tabIndex,
-      form,
-      onClick,
-      onFocus,
-      onKeyPress,
-      ...rest
-    },
-    ref
-  ) => {
-    const isLink = !!href;
+>((props, ref) => {
+  const {
+    children,
+    icon,
+    variant = "primary",
+    size = "md",
+    shape = "rounded",
+    block = false,
+    loading = false,
+    disabled = false,
+    active = false,
+    toggleable = false,
+    checked = false,
+    align = "center",
+    margin,
+    padding,
+    href,
+    tooltip,
+    className,
+    style,
+    type = "button",
+    ariaLabel,
+    tabIndex,
+    form,
+    onClick,
+    onFocus,
+    onKeyPress,
+    ...rest
+  } = props;
 
-    // Handle toggleable active/checked state
-    const isActive = toggleable ? checked : active;
+  const isLink = !!href;
+  const isActive = toggleable ? checked : active;
 
-    const baseClasses = clsx(
-      "inline-flex items-center justify-center font-semibold transition-all focus:outline-none focus:ring-2",
-      variantMap[variant],
-      shapeMap[shape],
-      typeof size === "string" ? sizeMap[size] : `px-4 py-2 text-base`,
-      block && "w-full",
-      loading && "opacity-60 cursor-not-allowed",
-      disabled && "opacity-50 cursor-not-allowed",
-      isActive && "ring-2 ring-primary-400",
-      align === "left" && "justify-start",
-      align === "center" && "justify-center",
-      align === "right" && "justify-end",
-      margin,
-      padding,
-      className
-    );
+  const baseClasses = clsx(
+    "inline-flex items-center justify-center font-semibold transition-all focus:outline-none focus:ring-2",
+    variantMap[variant],
+    shapeMap[shape],
+    sizeMap[size],
+    block && "w-full",
+    loading && "opacity-60 cursor-not-allowed",
+    disabled && "opacity-50 cursor-not-allowed",
+    isActive && "ring-2 ring-primary-400",
+    align === "left" && "justify-start",
+    align === "center" && "justify-center",
+    align === "right" && "justify-end",
+    margin,
+    padding,
+    className
+  );
 
-    const content = (
-      <>
-        {loading && <Spinner className="mr-2" />}
-        {icon && <span className="mr-2">{icon}</span>}
-        {children}
-      </>
-    );
+  const content = (
+    <>
+      {loading && <Spinner className="mr-2" />}
+      {icon && <span className="mr-2">{icon}</span>}
+      {children}
+    </>
+  );
 
-    if (isLink) {
-      return (
-        <Link
-          href={href}
-          className={baseClasses}
-          style={style}
-          aria-label={ariaLabel}
-          tabIndex={tabIndex}
-          title={tooltip}
-          {...rest}
-        >
-          {content}
-        </Link>
-      );
-    }
-
+  if (isLink) {
     return (
-      <button
-        ref={ref as any}
-        type={type}
+      <Link
+        href={href}
+        ref={ref as React.Ref<HTMLAnchorElement>} 
         className={baseClasses}
         style={style}
         aria-label={ariaLabel}
         tabIndex={tabIndex}
-        disabled={disabled || loading}
-        form={form}
         title={tooltip}
-        onClick={onClick}
-        onFocus={onFocus}
-        onKeyPress={onKeyPress}
         {...rest}
       >
         {content}
-      </button>
+      </Link>
     );
   }
-);
+
+  return (
+    <button
+      ref={ref as React.Ref<HTMLButtonElement>} 
+      type={type}
+      className={baseClasses}
+      style={style}
+      aria-label={ariaLabel}
+      tabIndex={tabIndex}
+      disabled={disabled || loading}
+      form={form}
+      title={tooltip}
+      onClick={onClick}
+      onFocus={onFocus}
+      onKeyPress={onKeyPress}
+      {...rest}
+    >
+      {content}
+    </button>
+  );
+});
 
 Button.displayName = "Button";

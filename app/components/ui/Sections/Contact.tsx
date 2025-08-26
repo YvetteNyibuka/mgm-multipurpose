@@ -3,6 +3,7 @@
 import Image from "next/image";
 import SectionTitle from "../SectionTitle";
 import { Button } from "../Button";
+import { Icon } from "@iconify/react";
 
 export default function Contact() {
   return (
@@ -27,25 +28,39 @@ export default function Contact() {
       {/* Combined Contact Info & Form */}
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 p-8 bg-white rounded-3xl shadow-xl">
         {/* Contact Info */}
-        <div className="space-y-6 bg-primary-50/90">
-          <div className="flex items-center gap-4 p-4">
-            <span className="text-3xl text-primary-500">📍</span>
-            <p className="text-lg font-medium text-text-light">
-              Kigali, Rwanda – Serving East Africa
-            </p>
-          </div>
-          <div className="flex items-center gap-4 p-4">
-            <span className="text-3xl text-primary-500">📞</span>
-            <p className="text-lg font-medium text-text-light">
-              +250 788 595 731
-            </p>
-          </div>
-          <div className="flex items-center gap-4 p-4">
-            <span className="text-3xl text-primary-500">✉️</span>
-            <p className="text-lg font-medium text-text-light">
-              mgmgasoreltd@gmail.com
-            </p>
-          </div>
+        <div className="space-y-6">
+          {[
+            {
+              icon: "mdi:map-marker",
+              title: "Our Location",
+              text: "Kigali, Rwanda – Serving East Africa",
+            },
+            {
+              icon: "mdi:phone",
+              title: "Phone",
+              text: "+250 788 595 731",
+            },
+            {
+              icon: "mdi:email",
+              title: "Email",
+              text: "mgmgasoreltd@gmail.com",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="flex items-start gap-4 bg-primary-50/70 p-5 rounded-xl shadow-sm hover:shadow-md transition"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary">
+                <Icon icon={item.icon} className="text-2xl" />
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-primary">
+                  {item.title}
+                </h4>
+                <p className="text-text-light">{item.text}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Contact Form */}

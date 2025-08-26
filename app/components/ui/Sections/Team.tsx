@@ -1,12 +1,13 @@
 "use client";
 
 import SectionTitle from "../SectionTitle";
+import Image from "next/image";
 
 const team = [
   {
     name: "Founder & CEO",
     role: "Senior Engineer",
-    image: "/Images/Team/Profile1.webp", // replace with actual image
+    image: "/Images/Team/Profile1.webp",
   },
   {
     name: "Technical Lead",
@@ -35,11 +36,14 @@ export default function Team() {
             className="bg-white rounded-2xl shadow-md hover:shadow-xl transition hover:scale-105 duration-300 p-6 flex flex-col items-center text-center"
           >
             {/* Profile Image */}
-            <div className="h-32 w-32 mb-4 overflow-hidden rounded-full shadow-md">
-              <img
+            <div className="h-32 w-32 mb-4 relative overflow-hidden rounded-full shadow-md">
+              <Image
                 src={member.image}
                 alt={member.name}
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
+                sizes="128px"
+                priority={i === 0} // optimize first image
               />
             </div>
 

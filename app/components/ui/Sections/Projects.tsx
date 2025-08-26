@@ -1,12 +1,13 @@
 "use client";
 
 import SectionTitle from "../SectionTitle";
+import Image from "next/image";
 
 const projects = [
   {
     title: "20 km Feeder Road Rehabilitation",
     location: "Gakenke District, Rwanda",
-    image: "/Images/Bridges/road.jpg", // replace with your project image
+    image: "/Images/Bridges/road.jpg",
   },
   {
     title: "Bridge Design & Construction Supervision",
@@ -36,10 +37,13 @@ export default function Projects() {
           >
             {/* Project Image */}
             <div className="w-full h-56 md:h-64 relative">
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
-                className="object-cover w-full h-full"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                priority={i === 0} // optimize first image
               />
             </div>
 
@@ -48,9 +52,7 @@ export default function Projects() {
               <h3 className="text-xl md:text-2xl font-semibold mb-2 text-primary dark:text-primary-400">
                 {project.title}
               </h3>
-              <p className="text-text-light font-medium">
-                {project.location}
-              </p>
+              <p className="text-text-light font-medium">{project.location}</p>
             </div>
           </div>
         ))}
