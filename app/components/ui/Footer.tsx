@@ -5,7 +5,6 @@ export default function Footer() {
   return (
     <footer className="w-full bg-primary-800 text-gray-200 py-12 mt-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* Brand Section */}
         <div>
           <div className="flex items-center gap-3 mb-4">
             <Image
@@ -23,7 +22,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Quick Links */}
         <div>
           <h3 className="font-semibold text-lg mb-4 text-white">Quick Links</h3>
           <ul className="space-y-2 text-sm">
