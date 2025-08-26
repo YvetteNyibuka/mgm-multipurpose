@@ -10,6 +10,7 @@ const navLinks = [
   { name: "Projects", href: "#projects" },
   { name: "Team", href: "#team" },
   { name: "Why Us?", href: "#why" },
+  {name: "FAQs", href: "#faqs" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -45,6 +46,22 @@ export default function Navbar({ className }: { className?: string }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleNavClick = (
+  e: React.MouseEvent<HTMLAnchorElement>,
+  href: string
+) => {
+  e.preventDefault();
+  const id = href.replace("#", "");
+  const el = document.getElementById(id);
+  if (el) {
+    const navbarHeight = 80; // adjust based on your navbar height
+    const y = el.getBoundingClientRect().top + window.scrollY - navbarHeight;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    window.history.replaceState(null, "", href); // <-- update hash in URL
+    closeMenu();
+  }
+};
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -76,6 +93,7 @@ export default function Navbar({ className }: { className?: string }) {
                     ? "text-primary  hover:text-primary-400"
                     : "text-white hover:text-primary-400"
                 }`}
+                onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.name}
               </a>
@@ -133,7 +151,8 @@ export default function Navbar({ className }: { className?: string }) {
             key={link.name}
             href={link.href}
             className="py-3 text-lg font-semibold hover:text-primary-400 transition w-full text-center"
-            onClick={closeMenu}
+            // handle both close menu and smooth scroll
+            onClick={(e) => handleNavClick(e, link.href)}
           >
             {link.name}
           </a>

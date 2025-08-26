@@ -23,7 +23,7 @@ const team = [
 
 export default function Team() {
   return (
-    <section className="py-20 px-6 bg-background-light">
+    <section id="team" className="py-20 px-6 bg-background-light">
       <SectionTitle
         title="Our Team"
         subtitle="We are a diverse team of skilled architects, engineers, and project managers driven by innovation, collaboration, and a shared vision for sustainable infrastructure."

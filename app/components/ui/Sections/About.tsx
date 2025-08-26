@@ -5,7 +5,7 @@ import SectionTitle from "../SectionTitle";
 
 export default function About() {
   return (
-    <section className="relative py-20 px-6 bg-primary-50 dark:bg-background-dark text-text-light dark:text-text-dark">
+    <section id="about" className="relative py-20 px-6 bg-primary-50 dark:bg-background-dark text-text-light dark:text-text-dark">
 
       {/* Section Title */}
       <SectionTitle

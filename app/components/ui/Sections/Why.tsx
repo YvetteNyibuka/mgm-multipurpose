@@ -40,7 +40,10 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 md:px-0 px-6 bg-primary-50 text-text-light dark:text-text-dark">
+    <section
+      id="why"
+      className="py-20 md:px-0 px-6 bg-primary-50 text-text-light dark:text-text-dark"
+    >
       <SectionTitle
         title="Why Choose Us?"
         subtitle="Discover why MGM Multipurpose Ltd is trusted across the region for resilient and sustainable infrastructure."

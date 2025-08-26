@@ -23,7 +23,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="py-20 px-6 bg-background-light">
+    <section id="projects" className="py-20 px-6 bg-background-light">
       <SectionTitle
         title="Our Projects"
         subtitle="Transforming landscapes with sustainable infrastructure"

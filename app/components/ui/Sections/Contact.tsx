@@ -7,7 +7,10 @@ import SectionTitle from "../SectionTitle";
 
 export default function Contact() {
   return (
-    <section className="relative py-8 sm:py-12 lg:py-20 px-4 sm:px-6 bg-primary-50 ">
+    <section
+      id="contact"
+      className="relative py-8 sm:py-12 lg:py-20 px-4 sm:px-6 bg-primary-50 "
+    >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 -z-10">
         <Image
