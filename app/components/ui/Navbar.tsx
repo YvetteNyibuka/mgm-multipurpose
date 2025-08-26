@@ -49,7 +49,7 @@ export default function Navbar({ className }: { className?: string }) {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white dark:bg-primary-700 text-primary dark:text-text-dark shadow-md"
+          ? "bg-white text-primary shadow-md"
           : "bg-transparent text-white"
       } ${className}`}
     >
@@ -73,8 +73,8 @@ export default function Navbar({ className }: { className?: string }) {
                 href={link.href}
                 className={`font-semibold transition-colors duration-200 ${
                   scrolled
-                    ? "text-primary dark:text-text-dark hover:text-primary-900"
-                    : "text-white hover:text-primary-300"
+                    ? "text-primary  hover:text-primary-400"
+                    : "text-white hover:text-primary-400"
                 }`}
               >
                 {link.name}
@@ -122,7 +122,7 @@ export default function Navbar({ className }: { className?: string }) {
       {/* Mobile Menu */}
       <div
         ref={menuRef}
-        className={`md:hidden bg-primary-500 dark:bg-primary-700 text-white flex flex-col transition-all duration-300 ease-in-out ${
+        className={`md:hidden bg-white text-primary flex flex-col transition-all duration-300 ease-in-out ${
           isMenuOpen
             ? "opacity-100 max-h-screen"
             : "opacity-0 max-h-0 overflow-hidden"
@@ -132,7 +132,7 @@ export default function Navbar({ className }: { className?: string }) {
           <a
             key={link.name}
             href={link.href}
-            className="py-3 text-lg font-semibold hover:bg-primary-600 dark:hover:bg-primary-800 transition w-full text-center"
+            className="py-3 text-lg font-semibold hover:text-primary-400 transition w-full text-center"
             onClick={closeMenu}
           >
             {link.name}
